@@ -1,0 +1,40 @@
+entity Ville {
+    image Blob
+    villeId Long
+	nom String
+    pays String
+    description String
+}
+
+entity Site {
+    siteId Long
+	nom String
+    lienUrl String
+    prix Long
+    description String
+    adresse String
+}
+
+entity Parcours {
+   titre String
+   villeId String
+   siteId String
+}
+
+relationship OneToMany {
+   Site{ville} to Ville
+}
+
+relationship OneToMany {
+  Parcours{site} to Site
+}
+
+relationship OneToMany {
+  Ville{parcours} to Parcours
+}
+
+
+
+// Set service options to all except few
+service all with serviceImpl
+
