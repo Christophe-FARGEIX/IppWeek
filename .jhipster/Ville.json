@@ -6,12 +6,6 @@
             "relationshipName": "parcours",
             "otherEntityName": "parcours",
             "otherEntityRelationshipName": "ville"
-        },
-        {
-            "relationshipName": "site",
-            "otherEntityName": "site",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
         }
     ],
     "fields": [

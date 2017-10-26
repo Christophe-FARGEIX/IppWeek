@@ -1,5 +1,6 @@
 package com.mycompany.myapp.service.impl;
 
+import com.mycompany.myapp.domain.Site;
 import com.mycompany.myapp.service.ParcoursService;
 import com.mycompany.myapp.domain.Parcours;
 import com.mycompany.myapp.repository.ParcoursRepository;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -70,6 +72,23 @@ public class ParcoursServiceImpl implements ParcoursService{
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Parcours : {}", id);
+
+
         parcoursRepository.delete(id);
+    }
+
+    @Override
+    public void removeSiteBySiteId(Long siteId) {
+        List<Parcours> dbParcoursList = parcoursRepository.findAll();
+        for(Parcours parcours : dbParcoursList) {
+            Iterator<Site> siteIter = parcours.getSites().iterator();
+            while(siteIter.hasNext()) {
+                Site site = siteIter.next();
+                if(site.getId().equals(siteId)) {
+                    parcours.getSites().remove(site);
+                    parcoursRepository.save(parcours);
+                }
+            }
+        }
     }
 }

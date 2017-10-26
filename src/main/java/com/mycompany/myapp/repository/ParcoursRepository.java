@@ -18,5 +18,4 @@ public interface ParcoursRepository extends JpaRepository<Parcours, Long> {
 
     @Query("select parcours from Parcours parcours left join fetch parcours.sites where parcours.id =:id")
     Parcours findOneWithEagerRelationships(@Param("id") Long id);
-
 }

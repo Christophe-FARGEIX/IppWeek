@@ -102,9 +102,11 @@ public class ParcoursResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(parcours));
     }
 
+
     /**
      * DELETE  /parcours/:id : delete the "id" parcours.
      *
+     * @param id the id of the parcours to delete
      * @param id the id of the parcours to delete
      * @return the ResponseEntity with status 200 (OK)
      */

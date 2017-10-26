@@ -29,7 +29,7 @@
                 <td>{{parcours.titre}}</td>
                 <td>
                     <div *ngIf="parcours.ville">
-                        <a [routerLink]="['../ville', parcours.ville?.id ]" >{{parcours.ville?.id}}</a>
+                        <a [routerLink]="['../ville', parcours.ville?.id ]" >{{parcours.ville?.nom}}</a>
                     </div>
                 </td>
                 <td>

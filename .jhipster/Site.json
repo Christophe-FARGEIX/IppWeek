@@ -2,12 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "ville",
-            "otherEntityName": "ville",
-            "otherEntityRelationshipName": "site"
-        },
-        {
             "relationshipType": "many-to-many",
             "relationshipName": "parcours",
             "otherEntityName": "parcours",

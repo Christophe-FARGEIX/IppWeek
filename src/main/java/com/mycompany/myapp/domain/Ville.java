@@ -46,9 +46,6 @@ public class Ville implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Parcours> parcours = new HashSet<>();
 
-    @ManyToOne
-    private Site site;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -146,19 +143,6 @@ public class Ville implements Serializable {
 
     public void setParcours(Set<Parcours> parcours) {
         this.parcours = parcours;
-    }
-
-    public Site getSite() {
-        return site;
-    }
-
-    public Ville site(Site site) {
-        this.site = site;
-        return this;
-    }
-
-    public void setSite(Site site) {
-        this.site = site;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -9,7 +9,6 @@ export class Ville implements BaseEntity {
         public pays?: string,
         public description?: string,
         public parcours?: BaseEntity[],
-        public site?: BaseEntity,
     ) {
     }
 }

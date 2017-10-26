@@ -37,4 +37,10 @@ public interface ParcoursService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    /**
+     *
+     * @param siteId
+     */
+    void removeSiteBySiteId(Long siteId);
 }

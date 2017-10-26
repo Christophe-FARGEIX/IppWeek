@@ -21,7 +21,6 @@
             <th><span>Nom</span></th>
             <th><span>Pays</span></th>
             <th><span>Description</span></th>
-            <th><span>Site</span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,11 +34,6 @@
                 <td>{{ville.nom}}</td>
                 <td>{{ville.pays}}</td>
                 <td>{{ville.description}}</td>
-                <td>
-                    <div *ngIf="ville.site">
-                        <a [routerLink]="['../site', ville.site?.id ]" >{{ville.site?.id}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

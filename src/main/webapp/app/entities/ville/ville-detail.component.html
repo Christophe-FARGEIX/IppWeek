@@ -23,12 +23,6 @@
         <dd>
             <span>{{ville.description}}</span>
         </dd>
-        <dt><span>Site</span></dt>
-        <dd>
-            <div *ngIf="ville.site">
-                <a [routerLink]="['/site', ville.site?.id]">{{ville.site?.id}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

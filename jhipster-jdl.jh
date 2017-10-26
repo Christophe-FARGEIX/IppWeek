@@ -17,9 +17,6 @@ entity Parcours {
    titre String
 }
 
-relationship OneToMany {
-   Site{ville(nom)} to Ville
-}
 
 relationship ManyToMany {
   Parcours{site(nom)} to Site{parcours(titre)}

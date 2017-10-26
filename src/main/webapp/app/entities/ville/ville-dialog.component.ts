@@ -9,8 +9,6 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Ville } from './ville.model';
 import { VillePopupService } from './ville-popup.service';
 import { VilleService } from './ville.service';
-import { Site, SiteService } from '../site';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-ville-dialog',
@@ -21,22 +19,17 @@ export class VilleDialogComponent implements OnInit {
     ville: Ville;
     isSaving: boolean;
 
-    sites: Site[];
-
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private villeService: VilleService,
-        private siteService: SiteService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.siteService.query()
-            .subscribe((res: ResponseWrapper) => { this.sites = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     byteSize(field) {
@@ -83,10 +76,6 @@ export class VilleDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackSiteById(index: number, item: Site) {
-        return item.id;
     }
 }
 

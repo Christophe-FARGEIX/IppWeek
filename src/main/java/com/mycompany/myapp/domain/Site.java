@@ -40,11 +40,6 @@ public class Site implements Serializable {
     @Column(name = "adresse")
     private String adresse;
 
-    @OneToMany(mappedBy = "site")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Ville> villes = new HashSet<>();
-
     @ManyToMany(mappedBy = "sites")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -122,31 +117,6 @@ public class Site implements Serializable {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
-    }
-
-    public Set<Ville> getVilles() {
-        return villes;
-    }
-
-    public Site villes(Set<Ville> villes) {
-        this.villes = villes;
-        return this;
-    }
-
-    public Site addVille(Ville ville) {
-        this.villes.add(ville);
-        ville.setSite(this);
-        return this;
-    }
-
-    public Site removeVille(Ville ville) {
-        this.villes.remove(ville);
-        ville.setSite(null);
-        return this;
-    }
-
-    public void setVilles(Set<Ville> villes) {
-        this.villes = villes;
     }
 
     public Set<Parcours> getParcours() {
