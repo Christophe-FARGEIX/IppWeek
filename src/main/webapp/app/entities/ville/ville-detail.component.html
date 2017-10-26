@@ -1,0 +1,50 @@
+
+<div *ngIf="ville">
+    <h2><span>Ville</span> {{ville.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Image</span></dt>
+        <dd>
+            <div *ngIf="ville.image">
+                <a (click)="openFile(ville.imageContentType, ville.image)">open</a>
+                {{ville.imageContentType}}, {{byteSize(ville.image)}}
+            </div>
+        </dd>
+        <dt><span>Ville Id</span></dt>
+        <dd>
+            <span>{{ville.villeId}}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+            <span>{{ville.nom}}</span>
+        </dd>
+        <dt><span>Pays</span></dt>
+        <dd>
+            <span>{{ville.pays}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{ville.description}}</span>
+        </dd>
+        <dt><span>Site</span></dt>
+        <dd>
+            <div *ngIf="ville.site">
+                <a [routerLink]="['/site', ville.site?.id]">{{ville.site?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ville/'+ ville.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

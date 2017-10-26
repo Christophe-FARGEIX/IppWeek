@@ -1,0 +1,62 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySiteLabel">Create or edit a Site</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!site.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="site.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_siteId">Site Id</label>
+            <input type="number" class="form-control" name="siteId" id="field_siteId"
+                [(ngModel)]="site.siteId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="site.nom"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lienUrl">Lien Url</label>
+            <input type="text" class="form-control" name="lienUrl" id="field_lienUrl"
+                [(ngModel)]="site.lienUrl"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_prix">Prix</label>
+            <input type="number" class="form-control" name="prix" id="field_prix"
+                [(ngModel)]="site.prix"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="site.description"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                [(ngModel)]="site.adresse"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_parcours">Parcours</label>
+            <select class="form-control" id="field_parcours" name="parcours" [(ngModel)]="site.parcours" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="parcoursOption.id === site.parcours?.id ? site.parcours : parcoursOption" *ngFor="let parcoursOption of parcours; trackBy: trackParcoursById">{{parcoursOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

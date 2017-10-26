@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span>Sites</span>
+        <button class="btn btn-primary float-right jh-create-entity create-site" [routerLink]="['/', { outlets: { popup: ['site-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Site
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="sites">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Site Id</span></th>
+            <th><span>Nom</span></th>
+            <th><span>Lien Url</span></th>
+            <th><span>Prix</span></th>
+            <th><span>Description</span></th>
+            <th><span>Adresse</span></th>
+            <th><span>Parcours</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let site of sites ;trackBy: trackId">
+                <td><a [routerLink]="['../site', site.id ]">{{site.id}}</a></td>
+                <td>{{site.siteId}}</td>
+                <td>{{site.nom}}</td>
+                <td>{{site.lienUrl}}</td>
+                <td>{{site.prix}}</td>
+                <td>{{site.description}}</td>
+                <td>{{site.adresse}}</td>
+                <td>
+                    <div *ngIf="site.parcours">
+                        <a [routerLink]="['../parcours', site.parcours?.id ]" >{{site.parcours?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../site', site.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'site/'+ site.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'site/'+ site.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

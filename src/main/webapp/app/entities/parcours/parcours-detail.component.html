@@ -1,0 +1,39 @@
+
+<div *ngIf="parcours">
+    <h2><span>Parcours</span> {{parcours.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Titre</span></dt>
+        <dd>
+            <span>{{parcours.titre}}</span>
+        </dd>
+        <dt><span>Ville Id</span></dt>
+        <dd>
+            <span>{{parcours.villeId}}</span>
+        </dd>
+        <dt><span>Site Id</span></dt>
+        <dd>
+            <span>{{parcours.siteId}}</span>
+        </dd>
+        <dt><span>Ville</span></dt>
+        <dd>
+            <div *ngIf="parcours.ville">
+                <a [routerLink]="['/ville', parcours.ville?.id]">{{parcours.ville?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'parcours/'+ parcours.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

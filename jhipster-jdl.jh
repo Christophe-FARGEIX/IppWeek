@@ -1,13 +1,11 @@
 entity Ville {
     image Blob
-    villeId Long
 	nom String
     pays String
     description String
 }
 
 entity Site {
-    siteId Long
 	nom String
     lienUrl String
     prix Long
@@ -17,20 +15,18 @@ entity Site {
 
 entity Parcours {
    titre String
-   villeId String
-   siteId String
 }
 
 relationship OneToMany {
-   Site{ville} to Ville
+   Site{ville(nom)} to Ville
 }
 
 relationship OneToMany {
-  Parcours{site} to Site
+  Parcours{site(nom)} to Site
 }
 
 relationship OneToMany {
-  Ville{parcours} to Parcours
+  Ville{parcours(titre)} to Parcours
 }
 
 

@@ -1,0 +1,51 @@
+
+<div *ngIf="site">
+    <h2><span>Site</span> {{site.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Site Id</span></dt>
+        <dd>
+            <span>{{site.siteId}}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+            <span>{{site.nom}}</span>
+        </dd>
+        <dt><span>Lien Url</span></dt>
+        <dd>
+            <span>{{site.lienUrl}}</span>
+        </dd>
+        <dt><span>Prix</span></dt>
+        <dd>
+            <span>{{site.prix}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{site.description}}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+            <span>{{site.adresse}}</span>
+        </dd>
+        <dt><span>Parcours</span></dt>
+        <dd>
+            <div *ngIf="site.parcours">
+                <a [routerLink]="['/parcours', site.parcours?.id]">{{site.parcours?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'site/'+ site.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ville",
+            "otherEntityName": "ville",
+            "otherEntityRelationshipName": "site"
+        },
+        {
+            "relationshipName": "parcours",
+            "otherEntityName": "parcours",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "siteId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "nom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lienUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prix",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171026120406",
+    "entityTableName": "site",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "ville",
+            "otherEntityName": "ville",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "site",
+            "otherEntityName": "site",
+            "otherEntityRelationshipName": "parcours"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "titre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "villeId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "siteId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171026120407",
+    "entityTableName": "parcours",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}
