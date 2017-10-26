@@ -8,19 +8,17 @@
         <dd>
             <span>{{parcours.titre}}</span>
         </dd>
-        <dt><span>Ville Id</span></dt>
-        <dd>
-            <span>{{parcours.villeId}}</span>
-        </dd>
-        <dt><span>Site Id</span></dt>
-        <dd>
-            <span>{{parcours.siteId}}</span>
-        </dd>
         <dt><span>Ville</span></dt>
         <dd>
             <div *ngIf="parcours.ville">
                 <a [routerLink]="['/ville', parcours.ville?.id]">{{parcours.ville?.id}}</a>
             </div>
+        </dd>
+        <dt><span>Site</span></dt>
+        <dd>
+            <span *ngFor="let site of parcours.sites; let last = last">
+                <a [routerLink]="['/site', site?.id ]">{{site.nom}}</a>{{last ? '' : ', '}}
+            </span>
         </dd>
     </dl>
 

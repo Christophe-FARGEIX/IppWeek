@@ -14,5 +14,16 @@
                                  referencedColumnNames="id"
                                  referencedTableName="ville"/>
 
+        <addForeignKeyConstraint baseColumnNames="parcours_id"
+                                 baseTableName="parcours_site"
+                                 constraintName="fk_parcours_site_parcours_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="parcours"/>
+        <addForeignKeyConstraint baseColumnNames="sites_id"
+                                 baseTableName="parcours_site"
+                                 constraintName="fk_parcours_site_sites_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="site"/>
+        
     </changeSet>
 </databaseChangeLog>

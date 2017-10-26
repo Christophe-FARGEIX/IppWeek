@@ -18,9 +18,8 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Titre</span></th>
-            <th><span>Ville Id</span></th>
-            <th><span>Site Id</span></th>
             <th><span>Ville</span></th>
+            <th><span>Site</span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,12 +27,15 @@
             <tr *ngFor="let parcours of parcours ;trackBy: trackId">
                 <td><a [routerLink]="['../parcours', parcours.id ]">{{parcours.id}}</a></td>
                 <td>{{parcours.titre}}</td>
-                <td>{{parcours.villeId}}</td>
-                <td>{{parcours.siteId}}</td>
                 <td>
                     <div *ngIf="parcours.ville">
                         <a [routerLink]="['../ville', parcours.ville?.id ]" >{{parcours.ville?.id}}</a>
                     </div>
+                </td>
+                <td>
+                    <span *ngFor="let site of parcours.sites; let last = last">
+                            <a class="form-control-static" [routerLink]="['../site', site?.id ]">{{site.nom}}</a>{{last ? '' : ', '}}
+                        </span>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

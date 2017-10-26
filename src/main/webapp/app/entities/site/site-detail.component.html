@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span>Site Id</span></dt>
-        <dd>
-            <span>{{site.siteId}}</span>
-        </dd>
         <dt><span>Nom</span></dt>
         <dd>
             <span>{{site.nom}}</span>
@@ -27,12 +23,6 @@
         <dt><span>Adresse</span></dt>
         <dd>
             <span>{{site.adresse}}</span>
-        </dd>
-        <dt><span>Parcours</span></dt>
-        <dd>
-            <div *ngIf="site.parcours">
-                <a [routerLink]="['/parcours', site.parcours?.id]">{{site.parcours?.id}}</a>
-            </div>
         </dd>
     </dl>
 

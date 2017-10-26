@@ -45,9 +45,6 @@ public class VilleResourceIntTest {
     private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_IMAGE_CONTENT_TYPE = "image/png";
 
-    private static final Long DEFAULT_VILLE_ID = 1L;
-    private static final Long UPDATED_VILLE_ID = 2L;
-
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
 
@@ -100,7 +97,6 @@ public class VilleResourceIntTest {
         Ville ville = new Ville()
             .image(DEFAULT_IMAGE)
             .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
-            .villeId(DEFAULT_VILLE_ID)
             .nom(DEFAULT_NOM)
             .pays(DEFAULT_PAYS)
             .description(DEFAULT_DESCRIPTION);
@@ -129,7 +125,6 @@ public class VilleResourceIntTest {
         Ville testVille = villeList.get(villeList.size() - 1);
         assertThat(testVille.getImage()).isEqualTo(DEFAULT_IMAGE);
         assertThat(testVille.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
-        assertThat(testVille.getVilleId()).isEqualTo(DEFAULT_VILLE_ID);
         assertThat(testVille.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testVille.getPays()).isEqualTo(DEFAULT_PAYS);
         assertThat(testVille.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
@@ -167,7 +162,6 @@ public class VilleResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(ville.getId().intValue())))
             .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
-            .andExpect(jsonPath("$.[*].villeId").value(hasItem(DEFAULT_VILLE_ID.intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
             .andExpect(jsonPath("$.[*].pays").value(hasItem(DEFAULT_PAYS.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
@@ -186,7 +180,6 @@ public class VilleResourceIntTest {
             .andExpect(jsonPath("$.id").value(ville.getId().intValue()))
             .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
             .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
-            .andExpect(jsonPath("$.villeId").value(DEFAULT_VILLE_ID.intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
             .andExpect(jsonPath("$.pays").value(DEFAULT_PAYS.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
@@ -213,7 +206,6 @@ public class VilleResourceIntTest {
         updatedVille
             .image(UPDATED_IMAGE)
             .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
-            .villeId(UPDATED_VILLE_ID)
             .nom(UPDATED_NOM)
             .pays(UPDATED_PAYS)
             .description(UPDATED_DESCRIPTION);
@@ -229,7 +221,6 @@ public class VilleResourceIntTest {
         Ville testVille = villeList.get(villeList.size() - 1);
         assertThat(testVille.getImage()).isEqualTo(UPDATED_IMAGE);
         assertThat(testVille.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
-        assertThat(testVille.getVilleId()).isEqualTo(UPDATED_VILLE_ID);
         assertThat(testVille.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testVille.getPays()).isEqualTo(UPDATED_PAYS);
         assertThat(testVille.getDescription()).isEqualTo(UPDATED_DESCRIPTION);

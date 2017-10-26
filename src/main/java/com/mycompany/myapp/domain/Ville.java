@@ -32,9 +32,6 @@ public class Ville implements Serializable {
     @Column(name = "image_content_type")
     private String imageContentType;
 
-    @Column(name = "ville_id")
-    private Long villeId;
-
     @Column(name = "nom")
     private String nom;
 
@@ -85,19 +82,6 @@ public class Ville implements Serializable {
 
     public void setImageContentType(String imageContentType) {
         this.imageContentType = imageContentType;
-    }
-
-    public Long getVilleId() {
-        return villeId;
-    }
-
-    public Ville villeId(Long villeId) {
-        this.villeId = villeId;
-        return this;
-    }
-
-    public void setVilleId(Long villeId) {
-        this.villeId = villeId;
     }
 
     public String getNom() {
@@ -204,7 +188,6 @@ public class Ville implements Serializable {
             "id=" + getId() +
             ", image='" + getImage() + "'" +
             ", imageContentType='" + imageContentType + "'" +
-            ", villeId='" + getVilleId() + "'" +
             ", nom='" + getNom() + "'" +
             ", pays='" + getPays() + "'" +
             ", description='" + getDescription() + "'" +

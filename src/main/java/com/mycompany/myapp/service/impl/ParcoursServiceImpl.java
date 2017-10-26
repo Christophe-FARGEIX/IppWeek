@@ -46,7 +46,7 @@ public class ParcoursServiceImpl implements ParcoursService{
     @Transactional(readOnly = true)
     public List<Parcours> findAll() {
         log.debug("Request to get all Parcours");
-        return parcoursRepository.findAll();
+        return parcoursRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -59,7 +59,7 @@ public class ParcoursServiceImpl implements ParcoursService{
     @Transactional(readOnly = true)
     public Parcours findOne(Long id) {
         log.debug("Request to get Parcours : {}", id);
-        return parcoursRepository.findOne(id);
+        return parcoursRepository.findOneWithEagerRelationships(id);
     }
 
     /**

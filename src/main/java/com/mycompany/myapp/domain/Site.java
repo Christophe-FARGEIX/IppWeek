@@ -25,9 +25,6 @@ public class Site implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "site_id")
-    private Long siteId;
-
     @Column(name = "nom")
     private String nom;
 
@@ -48,8 +45,10 @@ public class Site implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Ville> villes = new HashSet<>();
 
-    @ManyToOne
-    private Parcours parcours;
+    @ManyToMany(mappedBy = "sites")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Parcours> parcours = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -58,19 +57,6 @@ public class Site implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getSiteId() {
-        return siteId;
-    }
-
-    public Site siteId(Long siteId) {
-        this.siteId = siteId;
-        return this;
-    }
-
-    public void setSiteId(Long siteId) {
-        this.siteId = siteId;
     }
 
     public String getNom() {
@@ -163,16 +149,28 @@ public class Site implements Serializable {
         this.villes = villes;
     }
 
-    public Parcours getParcours() {
+    public Set<Parcours> getParcours() {
         return parcours;
     }
 
-    public Site parcours(Parcours parcours) {
+    public Site parcours(Set<Parcours> parcours) {
         this.parcours = parcours;
         return this;
     }
 
-    public void setParcours(Parcours parcours) {
+    public Site addParcours(Parcours parcours) {
+        this.parcours.add(parcours);
+        parcours.getSites().add(this);
+        return this;
+    }
+
+    public Site removeParcours(Parcours parcours) {
+        this.parcours.remove(parcours);
+        parcours.getSites().remove(this);
+        return this;
+    }
+
+    public void setParcours(Set<Parcours> parcours) {
         this.parcours = parcours;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
@@ -201,7 +199,6 @@ public class Site implements Serializable {
     public String toString() {
         return "Site{" +
             "id=" + getId() +
-            ", siteId='" + getSiteId() + "'" +
             ", nom='" + getNom() + "'" +
             ", lienUrl='" + getLienUrl() + "'" +
             ", prix='" + getPrix() + "'" +

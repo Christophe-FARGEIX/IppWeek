@@ -10,6 +10,7 @@ import { Parcours } from './parcours.model';
 import { ParcoursPopupService } from './parcours-popup.service';
 import { ParcoursService } from './parcours.service';
 import { Ville, VilleService } from '../ville';
+import { Site, SiteService } from '../site';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,11 +24,14 @@ export class ParcoursDialogComponent implements OnInit {
 
     villes: Ville[];
 
+    sites: Site[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private parcoursService: ParcoursService,
         private villeService: VilleService,
+        private siteService: SiteService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,6 +40,8 @@ export class ParcoursDialogComponent implements OnInit {
         this.isSaving = false;
         this.villeService.query()
             .subscribe((res: ResponseWrapper) => { this.villes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.siteService.query()
+            .subscribe((res: ResponseWrapper) => { this.sites = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -74,6 +80,21 @@ export class ParcoursDialogComponent implements OnInit {
 
     trackVilleById(index: number, item: Ville) {
         return item.id;
+    }
+
+    trackSiteById(index: number, item: Site) {
+        return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }
 

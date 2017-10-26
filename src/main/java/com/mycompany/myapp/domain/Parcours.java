@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,18 +27,14 @@ public class Parcours implements Serializable {
     @Column(name = "titre")
     private String titre;
 
-    @Column(name = "ville_id")
-    private String villeId;
-
-    @Column(name = "site_id")
-    private String siteId;
-
     @ManyToOne
     private Ville ville;
 
-    @OneToMany(mappedBy = "parcours")
-    @JsonIgnore
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "parcours_site",
+               joinColumns = @JoinColumn(name="parcours_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="sites_id", referencedColumnName="id"))
     private Set<Site> sites = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -62,32 +57,6 @@ public class Parcours implements Serializable {
 
     public void setTitre(String titre) {
         this.titre = titre;
-    }
-
-    public String getVilleId() {
-        return villeId;
-    }
-
-    public Parcours villeId(String villeId) {
-        this.villeId = villeId;
-        return this;
-    }
-
-    public void setVilleId(String villeId) {
-        this.villeId = villeId;
-    }
-
-    public String getSiteId() {
-        return siteId;
-    }
-
-    public Parcours siteId(String siteId) {
-        this.siteId = siteId;
-        return this;
-    }
-
-    public void setSiteId(String siteId) {
-        this.siteId = siteId;
     }
 
     public Ville getVille() {
@@ -114,13 +83,13 @@ public class Parcours implements Serializable {
 
     public Parcours addSite(Site site) {
         this.sites.add(site);
-        site.setParcours(this);
+        site.getParcours().add(this);
         return this;
     }
 
     public Parcours removeSite(Site site) {
         this.sites.remove(site);
-        site.setParcours(null);
+        site.getParcours().remove(this);
         return this;
     }
 
@@ -154,8 +123,6 @@ public class Parcours implements Serializable {
         return "Parcours{" +
             "id=" + getId() +
             ", titre='" + getTitre() + "'" +
-            ", villeId='" + getVilleId() + "'" +
-            ", siteId='" + getSiteId() + "'" +
             "}";
     }
 }

@@ -42,12 +42,6 @@ public class ParcoursResourceIntTest {
     private static final String DEFAULT_TITRE = "AAAAAAAAAA";
     private static final String UPDATED_TITRE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_VILLE_ID = "AAAAAAAAAA";
-    private static final String UPDATED_VILLE_ID = "BBBBBBBBBB";
-
-    private static final String DEFAULT_SITE_ID = "AAAAAAAAAA";
-    private static final String UPDATED_SITE_ID = "BBBBBBBBBB";
-
     @Autowired
     private ParcoursRepository parcoursRepository;
 
@@ -89,9 +83,7 @@ public class ParcoursResourceIntTest {
      */
     public static Parcours createEntity(EntityManager em) {
         Parcours parcours = new Parcours()
-            .titre(DEFAULT_TITRE)
-            .villeId(DEFAULT_VILLE_ID)
-            .siteId(DEFAULT_SITE_ID);
+            .titre(DEFAULT_TITRE);
         return parcours;
     }
 
@@ -116,8 +108,6 @@ public class ParcoursResourceIntTest {
         assertThat(parcoursList).hasSize(databaseSizeBeforeCreate + 1);
         Parcours testParcours = parcoursList.get(parcoursList.size() - 1);
         assertThat(testParcours.getTitre()).isEqualTo(DEFAULT_TITRE);
-        assertThat(testParcours.getVilleId()).isEqualTo(DEFAULT_VILLE_ID);
-        assertThat(testParcours.getSiteId()).isEqualTo(DEFAULT_SITE_ID);
     }
 
     @Test
@@ -150,9 +140,7 @@ public class ParcoursResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(parcours.getId().intValue())))
-            .andExpect(jsonPath("$.[*].titre").value(hasItem(DEFAULT_TITRE.toString())))
-            .andExpect(jsonPath("$.[*].villeId").value(hasItem(DEFAULT_VILLE_ID.toString())))
-            .andExpect(jsonPath("$.[*].siteId").value(hasItem(DEFAULT_SITE_ID.toString())));
+            .andExpect(jsonPath("$.[*].titre").value(hasItem(DEFAULT_TITRE.toString())));
     }
 
     @Test
@@ -166,9 +154,7 @@ public class ParcoursResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(parcours.getId().intValue()))
-            .andExpect(jsonPath("$.titre").value(DEFAULT_TITRE.toString()))
-            .andExpect(jsonPath("$.villeId").value(DEFAULT_VILLE_ID.toString()))
-            .andExpect(jsonPath("$.siteId").value(DEFAULT_SITE_ID.toString()));
+            .andExpect(jsonPath("$.titre").value(DEFAULT_TITRE.toString()));
     }
 
     @Test
@@ -190,9 +176,7 @@ public class ParcoursResourceIntTest {
         // Update the parcours
         Parcours updatedParcours = parcoursRepository.findOne(parcours.getId());
         updatedParcours
-            .titre(UPDATED_TITRE)
-            .villeId(UPDATED_VILLE_ID)
-            .siteId(UPDATED_SITE_ID);
+            .titre(UPDATED_TITRE);
 
         restParcoursMockMvc.perform(put("/api/parcours")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -204,8 +188,6 @@ public class ParcoursResourceIntTest {
         assertThat(parcoursList).hasSize(databaseSizeBeforeUpdate);
         Parcours testParcours = parcoursList.get(parcoursList.size() - 1);
         assertThat(testParcours.getTitre()).isEqualTo(UPDATED_TITRE);
-        assertThat(testParcours.getVilleId()).isEqualTo(UPDATED_VILLE_ID);
-        assertThat(testParcours.getSiteId()).isEqualTo(UPDATED_SITE_ID);
     }
 
     @Test

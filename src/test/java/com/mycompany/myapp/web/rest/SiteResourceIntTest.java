@@ -39,9 +39,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = IppWeekApp.class)
 public class SiteResourceIntTest {
 
-    private static final Long DEFAULT_SITE_ID = 1L;
-    private static final Long UPDATED_SITE_ID = 2L;
-
     private static final String DEFAULT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_NOM = "BBBBBBBBBB";
 
@@ -98,7 +95,6 @@ public class SiteResourceIntTest {
      */
     public static Site createEntity(EntityManager em) {
         Site site = new Site()
-            .siteId(DEFAULT_SITE_ID)
             .nom(DEFAULT_NOM)
             .lienUrl(DEFAULT_LIEN_URL)
             .prix(DEFAULT_PRIX)
@@ -127,7 +123,6 @@ public class SiteResourceIntTest {
         List<Site> siteList = siteRepository.findAll();
         assertThat(siteList).hasSize(databaseSizeBeforeCreate + 1);
         Site testSite = siteList.get(siteList.size() - 1);
-        assertThat(testSite.getSiteId()).isEqualTo(DEFAULT_SITE_ID);
         assertThat(testSite.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testSite.getLienUrl()).isEqualTo(DEFAULT_LIEN_URL);
         assertThat(testSite.getPrix()).isEqualTo(DEFAULT_PRIX);
@@ -165,7 +160,6 @@ public class SiteResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(site.getId().intValue())))
-            .andExpect(jsonPath("$.[*].siteId").value(hasItem(DEFAULT_SITE_ID.intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
             .andExpect(jsonPath("$.[*].lienUrl").value(hasItem(DEFAULT_LIEN_URL.toString())))
             .andExpect(jsonPath("$.[*].prix").value(hasItem(DEFAULT_PRIX.intValue())))
@@ -184,7 +178,6 @@ public class SiteResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(site.getId().intValue()))
-            .andExpect(jsonPath("$.siteId").value(DEFAULT_SITE_ID.intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
             .andExpect(jsonPath("$.lienUrl").value(DEFAULT_LIEN_URL.toString()))
             .andExpect(jsonPath("$.prix").value(DEFAULT_PRIX.intValue()))
@@ -211,7 +204,6 @@ public class SiteResourceIntTest {
         // Update the site
         Site updatedSite = siteRepository.findOne(site.getId());
         updatedSite
-            .siteId(UPDATED_SITE_ID)
             .nom(UPDATED_NOM)
             .lienUrl(UPDATED_LIEN_URL)
             .prix(UPDATED_PRIX)
@@ -227,7 +219,6 @@ public class SiteResourceIntTest {
         List<Site> siteList = siteRepository.findAll();
         assertThat(siteList).hasSize(databaseSizeBeforeUpdate);
         Site testSite = siteList.get(siteList.size() - 1);
-        assertThat(testSite.getSiteId()).isEqualTo(UPDATED_SITE_ID);
         assertThat(testSite.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testSite.getLienUrl()).isEqualTo(UPDATED_LIEN_URL);
         assertThat(testSite.getPrix()).isEqualTo(UPDATED_PRIX);

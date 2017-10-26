@@ -8,17 +8,14 @@
             "otherEntityRelationshipName": "site"
         },
         {
+            "relationshipType": "many-to-many",
             "relationshipName": "parcours",
             "otherEntityName": "parcours",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "ownerSide": false,
+            "otherEntityRelationshipName": "site"
         }
     ],
     "fields": [
-        {
-            "fieldName": "siteId",
-            "fieldType": "Long"
-        },
         {
             "fieldName": "nom",
             "fieldType": "String"

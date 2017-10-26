@@ -21,8 +21,8 @@ relationship OneToMany {
    Site{ville(nom)} to Ville
 }
 
-relationship OneToMany {
-  Parcours{site(nom)} to Site
+relationship ManyToMany {
+  Parcours{site(nom)} to Site{parcours(titre)}
 }
 
 relationship OneToMany {

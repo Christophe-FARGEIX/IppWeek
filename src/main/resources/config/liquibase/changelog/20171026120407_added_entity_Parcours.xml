@@ -25,20 +25,23 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="ville_id" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="site_id" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="ville_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        
+        <createTable tableName="parcours_site">
+            <column name="sites_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parcours_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="parcours_id, sites_id" tableName="parcours_site"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

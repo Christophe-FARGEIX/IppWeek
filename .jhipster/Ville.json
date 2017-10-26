@@ -21,10 +21,6 @@
             "fieldTypeBlobContent": "any"
         },
         {
-            "fieldName": "villeId",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "nom",
             "fieldType": "String"
         },

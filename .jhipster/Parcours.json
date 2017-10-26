@@ -8,23 +8,17 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "parcours",
             "relationshipName": "site",
             "otherEntityName": "site",
-            "otherEntityRelationshipName": "parcours"
+            "otherEntityField": "nom",
+            "ownerSide": true
         }
     ],
     "fields": [
         {
             "fieldName": "titre",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "villeId",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "siteId",
             "fieldType": "String"
         }
     ],
